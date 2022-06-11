@@ -7,7 +7,7 @@ permissions:
 on:
   push:
     branches:
-      - "gh-pages"
+      - "main"
 
 jobs:
   build:

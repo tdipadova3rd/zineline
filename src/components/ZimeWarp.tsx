@@ -8,13 +8,18 @@ export interface ZimeWarpState {
   value: number;
 }
 
-class ZimeWarp extends React.Component<{}, ZimeWarpState> {
-  constructor(props: any) {
+interface IProps {
+  min: number;
+  max: number;
+}
+
+class ZimeWarp extends React.Component<IProps, ZimeWarpState> {
+  constructor(props: IProps) {
     super(props);
     this.state = {
-      min: 0,
-      max: 100,
-      value: 90
+      min: props.min,
+      max: props.max,
+      value: props.max
     };
   }
 
@@ -33,7 +38,7 @@ class ZimeWarp extends React.Component<{}, ZimeWarpState> {
 
         <Slider
           className="center"
-          defaultValue={90}
+          defaultValue={this.state.max}
           min={this.state.min}
           max={this.state.max}
           onChange={this.onSliderChange}

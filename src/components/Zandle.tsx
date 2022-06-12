@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Zandle(props: any) {
+export default function Zandle(props: any) {
   if (props.index === 0) {
     return (
       <span
@@ -23,5 +23,3 @@ function Zandle(props: any) {
     );
   }
 }
-
-export default Zandle;

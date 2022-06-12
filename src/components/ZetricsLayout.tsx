@@ -1,8 +1,14 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import ZinelineGrid from './ZinelineGrid';
 import ZimeWarp from './ZimeWarp';
 import Zonnect from './Zonnect';
 import { Asset } from '../types/state';
+import { useOwnSales } from '../hooks/useOwnSales';
+import { useOwnTransfers } from '../hooks/useOwnTransfers';
+import { useOwnReceipts } from '../hooks/useOwnReceipt';
+import { useOwnBuys } from '../hooks/useOwnBuys';
+import { useOwnMints } from '../hooks/useOwnMints';
+import ZortfolioMetrics from './ZortfolioMetrics';
 
 interface IProps {}
 
@@ -35,34 +41,53 @@ interface IProps {}
 //      how would total profit change? how would cost basis change?
 
 interface IState {
+  zaddress: string;
   zortfolioValue: number;
   zultiverse: boolean;
   zassets: Asset[]; // ordered by (real) acquisition date
+  zin: number;
+  zax: number;
 }
 
-class ZetricsLayout extends React.Component<IProps, IState> {
-  constructor(props: IProps) {
-    super(props);
-    this.state = {
-      zortfolioValue: 0,
-      zassets: [],
-      zultiverse: false
-    };
-  }
+export default function ZetricsLayout(props: IProps) {
+  const [zaddress, setZaddress] = useState('tunadip.eth');
+  const [zortfolioValue, setZortfolioValue] = useState(0);
+  const [zassets, setZassets] = useState([]);
+  const [zultiverse, setZultiverse] = useState(false);
+  const [zin, setZin] = useState(0);
+  const [zax, setZax] = useState(100);
+  const [zimewarpValue, setZimewarpValue] = useState(50);
 
-  render() {
-    return (
-      <div className="container mx-auto bg-blue-300  overflow-auto">
-        <input type="text" placeholder="tunadip.eth" />
-        <Zonnect />
-        <h1>ON THE ZINELINE</h1>
-        <ZimeWarp min={5} max={50} />
-        <p>Total portfolio value: {this.state.zortfolioValue}</p>
-        <ZinelineGrid />
-        <h2>hell yeeeeeeeeaaaahhh</h2>
-      </div>
-    );
-  }
+  const salesResponse = useOwnSales(zaddress);
+  const transferResponse = useOwnTransfers(zaddress);
+  const receiptResponse = useOwnReceipts(zaddress);
+  const buyResponse = useOwnBuys(zaddress);
+  const mintResponse = useOwnMints(zaddress);
+
+  return (
+    <div className="container mx-auto bg-blue-300  overflow-auto">
+      <input
+        type="text"
+        placeholder={zaddress}
+        onChange={(e) => setZaddress(e.target.value)}
+        onKeyUp={(event) => {
+          if (event.key === 'Enter') {
+            setZaddress('new'); // needs to update data
+          }
+        }}
+      />
+      <Zonnect />
+      <h1>ON THE ZINELINE</h1>
+      <p>Address: {zaddress}</p>
+      <ZimeWarp
+        min={zin}
+        max={zax}
+        value={zimewarpValue}
+        onSliderChange={setZimewarpValue}
+      />
+      <ZortfolioMetrics zortfolioValue={zortfolioValue} />
+      <ZinelineGrid />
+      <h2>hell yeeeeeeeeaaaahhh</h2>
+    </div>
+  );
 }
-
-export default ZetricsLayout;

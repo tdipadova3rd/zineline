@@ -1,4 +1,41 @@
-import { useQuery } from '@apollo/client';
-import { OWNED_TOKENS_QUERY } from '../graphql/queries';
+import { gql, useQuery } from '@apollo/client';
 
-// const { loading, error, data } = useQuery(OWNED_TOKENS_QUERY);
+export const OWNED_TOKENS_QUERY = gql`
+  query Tokens($ownerAddress: String!) {
+    tokens(
+      where: { ownerAddresses: $ownerAddress }
+      pagination: { limit: 100 }
+      sort: { sortKey: TRANSFERRED, sortDirection: DESC }
+    ) {
+      nodes {
+        token {
+          collectionAddress
+          collectionName
+          tokenId
+          name
+          mintInfo {
+            originatorAddress
+            price {
+              blockNumber
+              usdcPrice {
+                decimal
+              }
+            }
+            toAddress
+            mintContext {
+              blockNumber
+            }
+          }
+        }
+      }
+    }
+  }
+`;
+
+export const useOwnTokens = (ownerAddress: string) => {
+  const { loading, error, data } = useQuery(OWNED_TOKENS_QUERY, {
+    variables: { ownerAddress }
+  });
+
+  return { loading, error, data };
+};

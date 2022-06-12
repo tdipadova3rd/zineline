@@ -2,6 +2,6 @@ import { Asset } from '../types/state';
 
 export function calculateZorfolioValue(assets: Asset[]) {
   return assets.reduce((accumulator, asset) => {
-    return accumulator + asset.current.blocknumber;
+    return accumulator + asset.current.priceUsdc;
   }, 0);
 }

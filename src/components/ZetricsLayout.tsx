@@ -65,6 +65,33 @@ export default function ZetricsLayout(props: IProps) {
   const buyResponse = useOwnBuys(zaddress);
   const mintResponse = useOwnMints(zaddress);
 
+  if (
+    salesResponse.loading ||
+    transferResponse.loading ||
+    receiptResponse.loading ||
+    buyResponse.loading ||
+    mintResponse.loading
+  ) {
+    return (
+      <div className="container mx-auto bg-blue-300  overflow-auto">
+        <h1>Loading...</h1>
+      </div>
+    );
+  }
+  if (
+    salesResponse.error ||
+    transferResponse.error ||
+    receiptResponse.error ||
+    buyResponse.error ||
+    mintResponse.error
+  ) {
+    return (
+      <div className="container mx-auto bg-blue-300  overflow-auto">
+        <h1>An error occurred</h1>
+      </div>
+    );
+  }
+
   return (
     <div className="container mx-auto bg-blue-300  overflow-auto">
       <Zaddress

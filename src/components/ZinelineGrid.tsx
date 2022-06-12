@@ -4,8 +4,8 @@ import Zineline from './Zineline';
 class ZinelineGrid extends React.Component {
   render() {
     return (
-      <div className="overflow-auto">
-        <ol>
+      <div className="container mx-auto bg-green-300  overflow-auto">
+        <ol className="list-none">
           <li>
             <Zineline />
           </li>

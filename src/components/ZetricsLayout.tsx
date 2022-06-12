@@ -1,8 +1,8 @@
 import React from 'react';
 import ZinelineGrid from './ZinelineGrid';
-import ZandleState from './Zineline';
 import ZimeWarp from './ZimeWarp';
 import Zonnect from './Zonnect';
+import { Asset } from '../types/state';
 
 interface IProps {}
 
@@ -19,14 +19,14 @@ interface IProps {}
 
 // do we actuall need all the tokens you've ever held?
 
-// state actuall is a list of all mints, sales, burns, and transfers,
-//       keyed by nft address and id - the key is actually and index, ordered by acquistion date
+// state actually is a list of all mints, sales, burns, and transfers, (represented by lower/upper bound)
+//       keyed by nft address and id - the key is actually an index, ordered by acquistion date
 //       with a price for the nft at the blocknumber selected in ZimeWarp
 
 interface IState {
   zortfolioValue: number;
-  zandles: ZandleState[];
   zultiverse: boolean;
+  zassets: Asset[]; // ordered by (real) acquisition date
 }
 
 class ZetricsLayout extends React.Component<IProps, IState> {
@@ -34,7 +34,7 @@ class ZetricsLayout extends React.Component<IProps, IState> {
     super(props);
     this.state = {
       zortfolioValue: 0,
-      zandles: [],
+      zassets: [],
       zultiverse: false
     };
   }

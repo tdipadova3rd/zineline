@@ -2,6 +2,7 @@ import React from 'react';
 import ZinelineGrid from './ZinelineGrid';
 import ZandleState from './Zineline';
 import ZimeWarp from './ZimeWarp';
+import Zonnect from './Zonnect';
 
 interface IProps {}
 
@@ -42,6 +43,7 @@ class ZetricsLayout extends React.Component<IProps, IState> {
     return (
       <div className="container mx-auto bg-blue-300  overflow-auto">
         <input type="text" placeholder="tunadip.eth" />
+        <Zonnect />
         <h1>ON THE ZINELINE</h1>
         <ZimeWarp min={5} max={50} />
         <p>Total portfolio value: {this.state.zortfolioValue}</p>

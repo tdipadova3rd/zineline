@@ -3,7 +3,7 @@ import { Range, Handle } from 'rc-slider';
 import 'rc-slider/assets/index.css';
 import Zandle from './Zandle';
 
-interface ZandleState {
+export interface ZinelineState {
   lowerBound: number;
   upperBound: number;
   min: number;
@@ -11,7 +11,7 @@ interface ZandleState {
   value: number[];
 }
 
-class Zineline extends React.Component<{}, ZandleState> {
+class Zineline extends React.Component<{}, ZinelineState> {
   constructor(props: any) {
     super(props);
     this.state = {

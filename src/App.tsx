@@ -1,12 +1,20 @@
 import React from 'react';
 import './App.css';
-import ZinelineGrid from './components/ZinelineGrid';
+import ZetricsLayout from './components/ZetricsLayout';
+import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
 
-function App() {
+const client = new ApolloClient({
+  uri: 'https://api.zora.co/graphql',
+  cache: new InMemoryCache()
+});
+
+function App(): JSX.Element {
   return (
-    <div className="App">
-      <ZinelineGrid />
-    </div>
+    <ApolloProvider client={client}>
+      <div className="App">
+        <ZetricsLayout />
+      </div>
+    </ApolloProvider>
   );
 }
 

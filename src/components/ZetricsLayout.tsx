@@ -23,6 +23,13 @@ interface IProps {}
 //       keyed by nft address and id - the key is actually an index, ordered by acquistion date
 //       with a price for the nft at the blocknumber selected in ZimeWarp
 
+// updates
+// when the address is updated, everything must update
+// when the nft slider moves, we only need to update portfolio value if
+//      timewarp is no longer contained (never bot or sold before time)
+// when the timewarp slider moves, get curr price for every nft
+//      and recalculate the portfolio value
+
 interface IState {
   zortfolioValue: number;
   zultiverse: boolean;

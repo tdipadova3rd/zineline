@@ -30,6 +30,10 @@ interface IProps {}
 // when the timewarp slider moves, get curr price for every nft
 //      and recalculate the portfolio value
 
+// stretch
+// calculate other metrics around warping
+//      how would total profit change? how would cost basis change?
+
 interface IState {
   zortfolioValue: number;
   zultiverse: boolean;

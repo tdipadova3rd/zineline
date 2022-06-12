@@ -3,7 +3,7 @@ import { gql, useQuery } from '@apollo/client';
 export const OWNED_TOKENS_QUERY = gql`
   query Tokens($ownerAddress: String!) {
     tokens(
-      where: { ownerAddresses: $ownerAddress }
+      where: { ownerAddresses: [$ownerAddress] }
       pagination: { limit: 100 }
       sort: { sortKey: TRANSFERRED, sortDirection: DESC }
     ) {

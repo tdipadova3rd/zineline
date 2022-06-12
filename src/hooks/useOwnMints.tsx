@@ -3,7 +3,7 @@ import { gql, useQuery } from '@apollo/client';
 const OWN_MINTS_QUERY = gql`
   query OwnMints($minterAddress: String!) {
     mints(
-      where: { minterAddresses: $minterAddress }
+      where: { minterAddresses: [$minterAddress] }
       sort: { sortKey: TIME, sortDirection: DESC }
     ) {
       nodes {

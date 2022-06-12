@@ -2,7 +2,7 @@ import { gql, useQuery } from '@apollo/client';
 const OWN_TRANSFERS_QUERY = gql`
   query OwnTransfers($senderAddress: String!) {
     events(
-      filter: { senderAddresses: $senderAddress, eventTypes: TRANSFER_EVENT }
+      filter: { senderAddresses: [$senderAddress], eventTypes: TRANSFER_EVENT }
       sort: { sortKey: CREATED, sortDirection: DESC }
     ) {
       nodes {

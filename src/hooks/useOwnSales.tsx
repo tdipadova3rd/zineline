@@ -2,7 +2,7 @@ import { gql, useQuery } from '@apollo/client';
 const OWN_SALE_QUERY = gql`
   query OwnSales($sellerAddress: String!) {
     sales(
-      where: { sellerAdresses: $sellerAddress }
+      where: { sellerAddresses: [$sellerAddress] }
       sort: { sortKey: TIME, sortDirection: DESC }
     ) {
       nodes {
@@ -17,17 +17,17 @@ const OWN_SALE_QUERY = gql`
               decimal
             }
           }
-          token {
-            collectionAddress
-            collectionName
-            name
-            tokenId
-            tokenUrl
-            image {
-              mediaEncoding {
-                ... on ImageEncodingTypes {
-                  thumbnail
-                }
+        }
+        token {
+          collectionAddress
+          collectionName
+          name
+          tokenId
+          tokenUrl
+          image {
+            mediaEncoding {
+              ... on ImageEncodingTypes {
+                thumbnail
               }
             }
           }

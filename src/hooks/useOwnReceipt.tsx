@@ -3,7 +3,7 @@ const OWN_RECEIPTS_QUERY = gql`
   query OwnReceipts($recipientAddress: String!) {
     events(
       filter: {
-        recipientAddresses: $recipientAddress
+        recipientAddresses: [$recipientAddress]
         eventTypes: TRANSFER_EVENT
       }
       sort: { sortKey: CREATED, sortDirection: DESC }

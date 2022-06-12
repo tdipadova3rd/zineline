@@ -9,6 +9,7 @@ import { useOwnReceipts } from '../hooks/useOwnReceipt';
 import { useOwnBuys } from '../hooks/useOwnBuys';
 import { useOwnMints } from '../hooks/useOwnMints';
 import ZortfolioMetrics from './ZortfolioMetrics';
+import Zaddress from './Zaddress';
 
 interface IProps {}
 
@@ -66,15 +67,10 @@ export default function ZetricsLayout(props: IProps) {
 
   return (
     <div className="container mx-auto bg-blue-300  overflow-auto">
-      <input
-        type="text"
-        placeholder={zaddress}
-        onChange={(e) => setZaddress(e.target.value)}
-        onKeyUp={(event) => {
-          if (event.key === 'Enter') {
-            setZaddress('new'); // needs to update data
-          }
-        }}
+      <Zaddress
+        zaddress={zaddress}
+        updateZaddress={setZaddress}
+        updateInitialData={() => console.log('reload')}
       />
       <Zonnect />
       <h1>ON THE ZINELINE</h1>
@@ -86,7 +82,7 @@ export default function ZetricsLayout(props: IProps) {
         onSliderChange={setZimewarpValue}
       />
       <ZortfolioMetrics zortfolioValue={zortfolioValue} />
-      <ZinelineGrid />
+      <ZinelineGrid onZinelineUpdate={(val) => console.log(val)} />
       <h2>hell yeeeeeeeeaaaahhh</h2>
     </div>
   );

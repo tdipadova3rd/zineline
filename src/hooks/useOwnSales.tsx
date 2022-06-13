@@ -1,9 +1,42 @@
 import { gql, useQuery } from '@apollo/client';
+
+export interface SalesData {
+  sales: {
+    nodes: {
+      sale: {
+        saleType: string;
+        transactionInfo: {
+          blockNumber: number;
+        };
+        price: {
+          blockNumber: number;
+          usdcPrice: {
+            decimal: number;
+          };
+        };
+      };
+      token: {
+        collectionAddress: string;
+        collectionName: string;
+        name: string;
+        tokenId: number;
+        tokenUrl: string;
+        image: {
+          mediaEncoding: {
+            thumbnail: string;
+          };
+        };
+      };
+    }[];
+  };
+}
+
 const OWN_SALE_QUERY = gql`
   query OwnSales($sellerAddress: String!) {
     sales(
       where: { sellerAddresses: [$sellerAddress] }
-      sort: { sortKey: TIME, sortDirection: DESC }
+      sort: { sortKey: TIME, sortDirection: ASC }
+      pagination: { limit: 500 }
     ) {
       nodes {
         sale {

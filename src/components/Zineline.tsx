@@ -7,10 +7,11 @@ export interface IProps {
   min: number;
   max: number;
   value: number[];
+  imageUri: string;
   onSliderChange: (value: number[]) => void;
 }
 
-function Zineline(props: IProps) {
+export default function Zineline(props: IProps) {
   return (
     <div className="relative">
       <label>LowerBound: </label>
@@ -18,6 +19,8 @@ function Zineline(props: IProps) {
       <br />
       <label>UpperBound: </label>
       <p>{props.value[1]}</p>
+      <br />
+      <img src={props.imageUri} width={50} height={50} alt="NFT" />
       <br />
       <Range
         className="center"
@@ -38,5 +41,3 @@ function Zineline(props: IProps) {
     </div>
   );
 }
-
-export default Zineline;

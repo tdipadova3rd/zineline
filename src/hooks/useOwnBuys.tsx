@@ -1,9 +1,11 @@
 import { gql, useQuery } from '@apollo/client';
+
 const OWN_BUY_QUERY = gql`
   query OwnBuys($buyerAddress: String!) {
     sales(
       where: { buyerAddresses: [$buyerAddress] }
-      sort: { sortKey: TIME, sortDirection: DESC }
+      sort: { sortKey: TIME, sortDirection: ASC }
+      pagination: { limit: 500 }
     ) {
       nodes {
         sale {

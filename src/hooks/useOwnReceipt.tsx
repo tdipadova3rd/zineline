@@ -6,7 +6,8 @@ const OWN_RECEIPTS_QUERY = gql`
         recipientAddresses: [$recipientAddress]
         eventTypes: TRANSFER_EVENT
       }
-      sort: { sortKey: CREATED, sortDirection: DESC }
+      sort: { sortKey: CREATED, sortDirection: ASC }
+      pagination: { limit: 500 }
     ) {
       nodes {
         eventType

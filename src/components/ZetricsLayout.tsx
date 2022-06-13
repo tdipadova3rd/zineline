@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
+import { ethers } from 'ethers';
 import ZinelineGrid from './ZinelineGrid';
 import ZimeWarp from './ZimeWarp';
 import Zonnect from './Zonnect';
@@ -10,6 +11,7 @@ import { useOwnBuys } from '../hooks/useOwnBuys';
 import { useOwnMints } from '../hooks/useOwnMints';
 import ZortfolioMetrics from './ZortfolioMetrics';
 import Zaddress from './Zaddress';
+import { calculateZorfolioValue, parseAssetBoundaries } from '../utils/utils';
 
 interface IProps {}
 
@@ -53,17 +55,78 @@ interface IState {
 export default function ZetricsLayout(props: IProps) {
   const [zaddress, setZaddress] = useState('tunadip.eth');
   const [zortfolioValue, setZortfolioValue] = useState(0);
-  const [zassets, setZassets] = useState([]);
+  const [zassets, setZassets] = useState<Asset[]>([]);
   const [zultiverse, setZultiverse] = useState(false);
   const [zin, setZin] = useState(0);
   const [zax, setZax] = useState(100);
-  const [zimewarpValue, setZimewarpValue] = useState(50);
+  const [zimewarpValue, setZimewarpValue] = useState(0);
+  const [mintLoaded, setMintLoaded] = useState(false);
+  const [salesLoaded, setSalesLoaded] = useState(false);
+  const [transferLoaded, setTransferLoaded] = useState(false);
+  const [buyLoaded, setBuyLoaded] = useState(false);
+  const [receiptLoaded, setReceiptLoaded] = useState(false);
 
   const salesResponse = useOwnSales(zaddress);
   const transferResponse = useOwnTransfers(zaddress);
   const receiptResponse = useOwnReceipts(zaddress);
   const buyResponse = useOwnBuys(zaddress);
   const mintResponse = useOwnMints(zaddress);
+
+  useEffect(() => {
+    console.log('setting block number');
+    ethers
+      .getDefaultProvider('mainnet')
+      .getBlockNumber()
+      .then((value) => {
+        setZimewarpValue(value);
+        setZax(value);
+      });
+  }, []);
+
+  useEffect(() => {
+    if (
+      !(
+        salesResponse.loading ||
+        transferResponse.loading ||
+        receiptResponse.loading ||
+        buyResponse.loading ||
+        mintResponse.loading
+      )
+    ) {
+      console.log(
+        'setting zassets with data',
+        salesResponse.data,
+        transferResponse.data,
+        receiptResponse.data,
+        buyResponse.data,
+        mintResponse.data
+      );
+      console.log(
+        'setting zassets with loading',
+        salesResponse.loading,
+        transferResponse.loading,
+        receiptResponse.loading,
+        buyResponse.loading,
+        mintResponse.loading
+      );
+      setZassets(
+        parseAssetBoundaries(
+          salesResponse.data,
+          transferResponse.data,
+          receiptResponse.data,
+          buyResponse.data,
+          mintResponse.data
+        )
+      );
+      setZin(zassets[0].acquisition?.blockNumber || 0);
+    }
+  }, [
+    salesResponse.loading,
+    transferResponse.loading,
+    receiptResponse.loading,
+    buyResponse.loading,
+    mintResponse.loading
+  ]);
 
   if (
     salesResponse.loading ||
@@ -109,7 +172,12 @@ export default function ZetricsLayout(props: IProps) {
         onSliderChange={setZimewarpValue}
       />
       <ZortfolioMetrics zortfolioValue={zortfolioValue} />
-      <ZinelineGrid onZinelineUpdate={(val) => console.log(val)} />
+      <ZinelineGrid
+        assets={zassets}
+        min={zin}
+        max={zax}
+        onZinelineUpdate={(val) => console.log(val)}
+      />
       <h2>hell yeeeeeeeeaaaahhh</h2>
     </div>
   );

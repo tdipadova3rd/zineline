@@ -1,3 +1,4 @@
+import { ethers } from 'ethers';
 import { MintData } from '../hooks/useOwnMints';
 import { SalesData } from '../hooks/useOwnSales';
 import { TransferData } from '../hooks/useOwnTransfers';
@@ -165,4 +166,8 @@ export function parseAssetBoundaries(
     });
   });
   return assets;
+}
+
+export function getBlock(blockNumber: number) {
+  return ethers.getDefaultProvider('mainnet').getBlock(blockNumber);
 }

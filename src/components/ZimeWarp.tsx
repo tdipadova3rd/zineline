@@ -12,9 +12,8 @@ interface IProps {
 export default function ZimeWarp(props: IProps) {
   return (
     <div className="relative">
-      <label>Value: </label>
-      <p>{props.value}</p>
-
+      <label>The Current Block is: {props.value}</label>
+      <p>Drag to update the current block (coming soon).</p>
       <Slider
         className="center"
         defaultValue={props.max}
@@ -35,7 +34,6 @@ export default function ZimeWarp(props: IProps) {
           );
         }}
       />
-      <h3>This is the zimewarp.</h3>
     </div>
   );
 }

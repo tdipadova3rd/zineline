@@ -132,10 +132,10 @@ export default function ZetricsLayout(props: IProps) {
 
   return (
     <div className="container mx-auto bg-blue-300  overflow-auto">
+      <h1>ON THE ZINELINE</h1>
+
       <Zaddress zaddress={zaddress} updateZaddress={setZaddress} />
       <Zonnect />
-      <h1>ON THE ZINELINE</h1>
-      <p>Address: {zaddress}</p>
       <ZimeWarp
         min={zin}
         max={zax}

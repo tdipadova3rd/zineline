@@ -1,6 +1,4 @@
-import React from 'react';
 import { Range, Handle } from 'rc-slider';
-import 'rc-slider/assets/index.css';
 import Zandle from './Zandle';
 import { Asset } from '../types/state';
 
@@ -11,52 +9,106 @@ export interface IProps {
   // onSliderChange: (value: number[]) => void;
 }
 
+const handleStyles: React.CSSProperties[] = [
+  {
+    position: 'relative',
+    // transform: 'translate(-50%, -50%)',
+    width: '100px',
+    height: '100px',
+    top: '-25px',
+    left: '-25px',
+    backgroundColor: 'transparent',
+    border: 'transparent'
+  },
+  {
+    position: 'relative',
+    // transform: 'translate(-50%, -50%)',
+    width: '100px',
+    height: '100px',
+    top: '-125px',
+    left: '-25px',
+    backgroundColor: 'transparent',
+    border: 'transparent'
+  }
+];
+
+const railStyle: React.CSSProperties = {
+  backgroundColor: '#ffcccb',
+  height: '20px',
+  top: '-5px'
+};
+
+const trackStyle: React.CSSProperties = {
+  backgroundColor: '#CBC3E3',
+  height: '20px',
+  top: '-5px'
+};
+
 export default function Zineline(props: IProps) {
+  // const [purchaseDate, setPurchaseDate] = useState(0);
+  // const [hodlDate, setHodlDate] = useState(0);
+
   const bounds = [
     props.asset.acquisition?.blockNumber || props.min,
     props.asset.release?.blockNumber || props.max
   ];
 
+  // useEffect(() => {
+  //   getBlock(bounds[0]).then((val) => {
+  //     setPurchaseDate(val.timestamp);
+  //   });
+  //   getBlock(bounds[1]).then((val) => {
+  //     setHodlDate(val.timestamp);
+  //   });
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, []);
+
   const imageUri = props.asset.mediaUrl || '../zorb.svg';
   return (
-    <div className="relative">
-      <label>Purchased At: </label>
-      <p>{bounds[0]}</p>
+    <div className="flex-row">
+      <div className="place-content-between grid-cols-2 gap-4">
+        <div className="rounded-lg border-white">
+          <label>Purchased at Block Number {bounds[0]}</label>
+          <br />
+          <label>Held Until Block Number {bounds[1]}</label>
+        </div>
+        <div className="rounded-lg border-white">
+          <label>Collection Name: {props.asset.collectionName}</label>
+          <br />
+          <label>Collection Address: {props.asset.contractAddress}</label>
+        </div>
+        <div className="rounded-lg border-white">
+          <label>Token Name: {props.asset.name}</label>
+          <br />
+          <label>Token ID: {props.asset.tokenId}</label>
+        </div>
+        <div className="rounded-lg border-white object-center">
+          <img src={imageUri} width={100} height={100} alt={props.asset.name} />
+        </div>
+      </div>
+      <div className="left-x-30">
+        <br />
+        <Range
+          className="center"
+          defaultValue={bounds}
+          allowCross={false}
+          min={props.min}
+          max={props.max}
+          disabled={true}
+          // onChange={props.onSliderChange}
+          handle={(handleProps) => {
+            return (
+              <Handle {...handleProps}>
+                <Zandle {...handleProps} />
+              </Handle>
+            );
+          }}
+          handleStyle={handleStyles}
+          trackStyle={[trackStyle]}
+          railStyle={railStyle}
+        />
+      </div>
       <br />
-      <label>Held Until: </label>
-      <p>{bounds[1]}</p>
-      <br />
-      <label>Collection Name: </label>
-      <p>{props.asset.collectionName}</p>
-      <br />
-      <label>Collection Address: </label>
-      <p>{props.asset.contractAddress}</p>
-      <br />
-      <label>Token Name: </label>
-      <p>{props.asset.name}</p>
-      <br />
-      <label>Token ID: </label>
-      <p>{props.asset.tokenId}</p>
-      <br />
-      <img src={imageUri} width={100} height={100} alt={props.asset.name} />
-      <br />
-      <Range
-        className="center"
-        defaultValue={bounds}
-        allowCross={false}
-        min={props.min}
-        max={props.max}
-        disabled={true}
-        // onChange={props.onSliderChange}
-        handle={(handleProps) => {
-          return (
-            <Handle {...handleProps}>
-              <Zandle {...handleProps} />
-            </Handle>
-          );
-        }}
-      />
-      <h3>This is a zineline.</h3>
     </div>
   );
 }

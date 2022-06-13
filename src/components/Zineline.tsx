@@ -86,10 +86,9 @@ export default function Zineline(props: IProps) {
           <img src={imageUri} width={100} height={100} alt={props.asset.name} />
         </div>
       </div>
-      <div className="relative">
-        <br />
+      <div>
+        {/* <br /> */}
         <Range
-          className="center"
           defaultValue={bounds}
           allowCross={false}
           min={props.min}

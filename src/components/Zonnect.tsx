@@ -8,7 +8,17 @@ export default function Zonnect() {
       rel="noreferrer"
       className="absolute top-3 right-3"
     >
-      <button>Connect 🥺👉👈</button>
+      <button
+        style={{
+          backgroundColor: '#FFD580',
+          borderRadius: '50%',
+          boxShadow: '2px 2px 2px #888888',
+          height: '40px',
+          width: '150px'
+        }}
+      >
+        Connect 🥺👉👈
+      </button>
     </a>
   );
 }

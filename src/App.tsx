@@ -1,4 +1,3 @@
-import React from 'react';
 import './App.css';
 import ZetricsLayout from './components/ZetricsLayout';
 import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';

@@ -59,7 +59,6 @@ export default function ZetricsLayout(props: IProps) {
   const mintResponse = useOwnMints(zaddress);
 
   useEffect(() => {
-    console.log('setting block number');
     ethers
       .getDefaultProvider('mainnet')
       .getBlockNumber()
@@ -79,22 +78,6 @@ export default function ZetricsLayout(props: IProps) {
         mintResponse.loading
       )
     ) {
-      console.log(
-        'setting zassets with data',
-        salesResponse.data,
-        transferResponse.data,
-        receiptResponse.data,
-        buyResponse.data,
-        mintResponse.data
-      );
-      console.log(
-        'setting zassets with loading',
-        salesResponse.loading,
-        transferResponse.loading,
-        receiptResponse.loading,
-        buyResponse.loading,
-        mintResponse.loading
-      );
       setZassets(
         parseAssetBoundaries(
           salesResponse.data,
@@ -111,7 +94,8 @@ export default function ZetricsLayout(props: IProps) {
     transferResponse.loading,
     receiptResponse.loading,
     buyResponse.loading,
-    mintResponse.loading
+    mintResponse.loading,
+    zaddress
   ]);
 
   useEffect(() => {
@@ -148,11 +132,7 @@ export default function ZetricsLayout(props: IProps) {
 
   return (
     <div className="container mx-auto bg-blue-300  overflow-auto">
-      <Zaddress
-        zaddress={zaddress}
-        updateZaddress={setZaddress}
-        updateInitialData={() => console.log('reload')}
-      />
+      <Zaddress zaddress={zaddress} updateZaddress={setZaddress} />
       <Zonnect />
       <h1>ON THE ZINELINE</h1>
       <p>Address: {zaddress}</p>
@@ -167,9 +147,9 @@ export default function ZetricsLayout(props: IProps) {
         assets={zassets}
         min={zin}
         max={zax}
-        onZinelineUpdate={(val) => console.log(val)}
+        // onZinelineUpdate={(val) => console.log(val)}
       />
-      <h2>hell yeeeeeeeeaaaahhh</h2>
+      <h2>What's next?</h2>
     </div>
   );
 }

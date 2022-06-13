@@ -67,7 +67,6 @@ const OWN_MINTS_QUERY = gql`
 `;
 
 export const useOwnMints = (minterAddress: string) => {
-  console.log('getting mints');
   const { loading, error, data } = useQuery(OWN_MINTS_QUERY, {
     variables: { minterAddress }
   });

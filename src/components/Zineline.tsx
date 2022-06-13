@@ -8,7 +8,7 @@ export interface IProps {
   asset: Asset;
   min: number;
   max: number;
-  onSliderChange: (value: number[]) => void;
+  // onSliderChange: (value: number[]) => void;
 }
 
 export default function Zineline(props: IProps) {
@@ -46,7 +46,8 @@ export default function Zineline(props: IProps) {
         allowCross={false}
         min={props.min}
         max={props.max}
-        onChange={props.onSliderChange}
+        disabled={true}
+        // onChange={props.onSliderChange}
         handle={(handleProps) => {
           return (
             <Handle {...handleProps}>

@@ -135,7 +135,7 @@ export function parseAssetBoundaries(
     const choice = assetlists[choiceIndex][indexes[choiceIndex]];
     // skip repeats
     if (assetMap.get(getAssetMapKey(choice.contractAddress, choice.tokenId))) {
-      console.log('repeat choice at index', choiceIndex);
+      // do nothing if duplicate
     } else {
       assets.push(choice); // add the oldest asset to the list
       assetMap.set(

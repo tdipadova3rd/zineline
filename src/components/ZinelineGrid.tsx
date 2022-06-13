@@ -4,7 +4,7 @@ import { getAssetMapKey } from '../utils/utils';
 import Zineline from './Zineline';
 
 interface IProps {
-  onZinelineUpdate: (value: number[]) => void;
+  // onZinelineUpdate: (value: number[]) => void;
   assets: Asset[];
   min: number;
   max: number;
@@ -21,7 +21,7 @@ export default function ZinelineGrid(props: IProps) {
                 asset={asset}
                 min={props.min}
                 max={props.max}
-                onSliderChange={props.onZinelineUpdate}
+                // onSliderChange={props.onZinelineUpdate}
               />
             </li>
           );

@@ -1,22 +1,24 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 interface IProps {
   zaddress: string;
   updateZaddress: Function;
-  updateInitialData: Function;
 }
 
 export default function Zaddress(props: IProps) {
+  const [text, setText] = useState(props.zaddress);
   return (
     <input
       type="text"
-      placeholder={props.zaddress}
-      onChange={(e) => props.updateZaddress(e.target.value)}
+      placeholder={text}
+      onChange={(e) => setText(e.target.value)}
       onKeyUp={(event) => {
         if (event.key === 'Enter') {
-          props.updateInitialData();
+          event.preventDefault();
+          props.updateZaddress(text);
         }
       }}
+      onSubmit={(e) => e.preventDefault()}
     />
   );
 }

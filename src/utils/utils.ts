@@ -48,7 +48,6 @@ function transferToAssetMapper(
   acquisition: boolean
 ): Asset[] {
   return data.events.nodes.map((node) => {
-    console.log('parsing asset for node', node);
     let asset: Asset = {
       contractAddress: node.collectionAddress,
       tokenId: node.tokenId
@@ -122,9 +121,9 @@ export function parseAssetBoundaries(
 
   let indexes = [0, 0, 0];
   const assetlists = [
-    transferToAssetMapper(receiptData, true),
+    mintToAssetMapper(mintData),
     saleToAssetMapper(buyData, true),
-    mintToAssetMapper(mintData)
+    transferToAssetMapper(receiptData, true) // process transfers last as they have least data
   ];
 
   const totalItems = sum(assetlists.map((assets) => assets.length));
@@ -137,11 +136,17 @@ export function parseAssetBoundaries(
     if (!choice) {
       console.log('THERE IS NO CHOICE', indexes, totalItems);
     }
-    assets.push(choice); // add the oldest asset to the list
-    assetMap.set(
-      getAssetMapKey(choice.contractAddress, choice.tokenId),
-      assets.length - 1
-    );
+    // skip repeats
+    if (assetMap.get(getAssetMapKey(choice.contractAddress, choice.tokenId))) {
+      console.log('repeat choice at index', choiceIndex);
+    } else {
+      assets.push(choice); // add the oldest asset to the list
+      assetMap.set(
+        getAssetMapKey(choice.contractAddress, choice.tokenId),
+        assets.length - 1
+      );
+    }
+
     indexes[choiceIndex] += 1;
   }
 

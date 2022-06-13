@@ -18,13 +18,9 @@ export default function ZinelineGrid(props: IProps) {
           return (
             <li key={getAssetMapKey(asset.contractAddress, asset.tokenId)}>
               <Zineline
+                asset={asset}
                 min={props.min}
                 max={props.max}
-                value={[
-                  asset.acquisition?.blockNumber || props.min,
-                  asset.release?.blockNumber || props.max
-                ]}
-                imageUri={asset.mediaUrl || '../zorb.svg'}
                 onSliderChange={props.onZinelineUpdate}
               />
             </li>

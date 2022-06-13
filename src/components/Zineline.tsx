@@ -25,7 +25,7 @@ const handleStyles: React.CSSProperties[] = [
     // transform: 'translate(-50%, -50%)',
     width: '100px',
     height: '100px',
-    top: '-125px',
+    top: '-120px',
     left: '-25px',
     backgroundColor: 'transparent',
     border: 'transparent'

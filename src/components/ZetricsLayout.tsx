@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import { ethers } from 'ethers';
 import ZinelineGrid from './ZinelineGrid';
-import ZimeWarp from './ZimeWarp';
 import Zonnect from './Zonnect';
 import { Asset } from '../types/state';
 import { useOwnSales } from '../hooks/useOwnSales';
@@ -50,7 +49,6 @@ export default function ZetricsLayout(props: IProps) {
   //   const [zultiverse, setZultiverse] = useState(false);
   const [zin, setZin] = useState(0);
   const [zax, setZax] = useState(100);
-  const [zimewarpValue, setZimewarpValue] = useState(0);
 
   const salesResponse = useOwnSales(zaddress);
   const transferResponse = useOwnTransfers(zaddress);
@@ -63,7 +61,6 @@ export default function ZetricsLayout(props: IProps) {
       .getDefaultProvider('mainnet')
       .getBlockNumber()
       .then((value) => {
-        setZimewarpValue(value);
         setZax(value);
       });
   }, []);
@@ -133,16 +130,13 @@ export default function ZetricsLayout(props: IProps) {
   return (
     <div className="container mx-auto bg-blue-300  overflow-auto">
       <h1>ON THE ZINELINE</h1>
-
+      <br />
       <Zaddress zaddress={zaddress} updateZaddress={setZaddress} />
+      <br />
       <Zonnect />
-      <ZimeWarp
-        min={zin}
-        max={zax}
-        value={zimewarpValue}
-        onSliderChange={setZimewarpValue}
-      />
+
       <ZortfolioMetrics zortfolioValue={zortfolioValue} />
+      <br />
       <ZinelineGrid
         assets={zassets}
         min={zin}

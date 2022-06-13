@@ -12,7 +12,7 @@ interface IProps {
 
 export default function ZinelineGrid(props: IProps) {
   return (
-    <div className="container mx-auto bg-green-300 h-screen w-full">
+    <div className="container mx-auto bg-green-300">
       <ol className="list-none">
         {props.assets.map((asset) => {
           return (

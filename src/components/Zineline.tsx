@@ -86,7 +86,7 @@ export default function Zineline(props: IProps) {
           <img src={imageUri} width={100} height={100} alt={props.asset.name} />
         </div>
       </div>
-      <div className="left-x-30">
+      <div className="relative">
         <br />
         <Range
           className="center"

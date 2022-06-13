@@ -2,6 +2,17 @@ import React from 'react';
 import Slider, { Handle } from 'rc-slider';
 import 'rc-slider/assets/index.css';
 
+const handleStyles: React.CSSProperties = {
+  position: 'relative',
+  // transform: 'translate(-50%, -50%)',
+  width: '100px',
+  height: '100px',
+  top: '-25px',
+  left: '-25px',
+  backgroundColor: 'transparent',
+  border: 'transparent'
+};
+
 interface IProps {
   min: number;
   max: number;
@@ -11,12 +22,13 @@ interface IProps {
 
 export default function ZimeWarp(props: IProps) {
   return (
-    <div className="relative">
+    <div className="relative px-10">
       <label>The Current Block is: {props.value}</label>
       <p>Drag to update the current block (coming soon).</p>
       <Slider
         className="center"
         defaultValue={props.max}
+        disabled={true}
         min={props.min}
         max={props.max}
         onChange={props.onSliderChange}
@@ -33,6 +45,7 @@ export default function ZimeWarp(props: IProps) {
             </Handle>
           );
         }}
+        handleStyle={handleStyles}
       />
     </div>
   );

@@ -118,7 +118,6 @@ export default function ZetricsLayout(props: IProps) {
           mintResponse.data
         )
       );
-      setZin(zassets[0].acquisition?.blockNumber || 0);
     }
   }, [
     salesResponse.loading,
@@ -127,6 +126,10 @@ export default function ZetricsLayout(props: IProps) {
     buyResponse.loading,
     mintResponse.loading
   ]);
+
+  useEffect(() => {
+    setZin(zassets[0]?.acquisition?.blockNumber || 0);
+  }, [zassets]);
 
   if (
     salesResponse.loading ||

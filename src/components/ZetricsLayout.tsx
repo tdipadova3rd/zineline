@@ -43,15 +43,6 @@ interface IProps {}
 // calculate other metrics around warping
 //      how would total profit change? how would cost basis change?
 
-interface IState {
-  zaddress: string;
-  zortfolioValue: number;
-  zultiverse: boolean;
-  zassets: Asset[]; // ordered by (real) acquisition date
-  zin: number;
-  zax: number;
-}
-
 export default function ZetricsLayout(props: IProps) {
   const [zaddress, setZaddress] = useState('tunadip.eth');
   const [zortfolioValue, setZortfolioValue] = useState(0);

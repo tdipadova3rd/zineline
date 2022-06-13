@@ -38,7 +38,7 @@ export default function Zineline(props: IProps) {
       <label>Token ID: </label>
       <p>{props.asset.tokenId}</p>
       <br />
-      <img src={imageUri} width={50} height={50} alt="NFT" />
+      <img src={imageUri} width={100} height={100} alt={props.asset.name} />
       <br />
       <Range
         className="center"

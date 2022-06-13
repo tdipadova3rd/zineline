@@ -10,7 +10,7 @@ const client = new ApolloClient({
 function App(): JSX.Element {
   return (
     <ApolloProvider client={client}>
-      <div className="App">
+      <div className="App bg-blue-300">
         <ZetricsLayout />
       </div>
     </ApolloProvider>

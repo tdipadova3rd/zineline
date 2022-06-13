@@ -133,9 +133,6 @@ export function parseAssetBoundaries(
     // find the oldest asset
     const choiceIndex = chooseOldestAsset(assetlists, indexes);
     const choice = assetlists[choiceIndex][indexes[choiceIndex]];
-    if (!choice) {
-      console.log('THERE IS NO CHOICE', indexes, totalItems);
-    }
     // skip repeats
     if (assetMap.get(getAssetMapKey(choice.contractAddress, choice.tokenId))) {
       console.log('repeat choice at index', choiceIndex);

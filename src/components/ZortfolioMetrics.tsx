@@ -17,6 +17,9 @@ export default function ZortfolioMetrics({ zortfolioValue }: IProps) {
         There will also be features to show portfolio value at various times.
         More metrics coming soon.
       </p>
+      <p>
+        Data not showing up or looks off? You're probably being rate limited.
+      </p>
     </div>
   );
 }

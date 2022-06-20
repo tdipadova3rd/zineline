@@ -8,11 +8,12 @@ interface IProps {
   assets: Asset[];
   min: number;
   max: number;
+  loading: boolean;
 }
 
 export default function ZinelineGrid(props: IProps) {
   return (
-    <div className="container mx-auto bg-green-300">
+    <div>
       <ol className="list-none">
         {props.assets.map((asset) => {
           return (

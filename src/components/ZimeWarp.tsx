@@ -1,4 +1,5 @@
 import React from 'react';
+import { Text, Stat } from 'degen';
 import Slider, { Handle } from 'rc-slider';
 import 'rc-slider/assets/index.css';
 
@@ -23,8 +24,8 @@ interface IProps {
 export default function ZimeWarp(props: IProps) {
   return (
     <div className="relative px-10">
-      <label>The Current Block is: {props.value}</label>
-      <p>Drag to update the current block (coming soon).</p>
+      <Stat label="Current Block" value={props.value} meta="Ethereum Mainnet" />
+      <Text>Drag to update the current block (coming soon).</Text>
       <Slider
         className="center"
         defaultValue={props.max}

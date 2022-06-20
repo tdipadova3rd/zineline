@@ -1,6 +1,8 @@
 import './App.css';
 import ZetricsLayout from './components/ZetricsLayout';
 import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
+import { ThemeProvider } from 'degen';
+import 'degen/styles';
 
 const client = new ApolloClient({
   uri: 'https://api.zora.co/graphql',
@@ -10,9 +12,9 @@ const client = new ApolloClient({
 function App(): JSX.Element {
   return (
     <ApolloProvider client={client}>
-      <div className="App bg-blue-300">
+      <ThemeProvider defaultMode="dark">
         <ZetricsLayout />
-      </div>
+      </ThemeProvider>
     </ApolloProvider>
   );
 }

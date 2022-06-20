@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Input } from 'degen';
 
 interface IProps {
   zaddress: string;
@@ -8,17 +9,17 @@ interface IProps {
 export default function Zaddress(props: IProps) {
   const [text, setText] = useState(props.zaddress);
   return (
-    <input
+    <Input
+      label="Wallet Address"
       type="text"
       placeholder={text}
       onChange={(e) => setText(e.target.value)}
-      onKeyUp={(event) => {
+      onKeyDown={(event) => {
         if (event.key === 'Enter') {
           event.preventDefault();
           props.updateZaddress(text);
         }
       }}
-      onSubmit={(e) => e.preventDefault()}
     />
   );
 }

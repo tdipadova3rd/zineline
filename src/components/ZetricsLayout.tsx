@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { ethers } from 'ethers';
+import { Heading, Spinner } from 'degen';
 import ZinelineGrid from './ZinelineGrid';
 import ZimeWarp from './ZimeWarp';
 import Zonnect from './Zonnect';
@@ -111,8 +112,8 @@ export default function ZetricsLayout(props: IProps) {
     mintResponse.loading
   ) {
     return (
-      <div className="container mx-auto bg-blue-300  overflow-auto">
-        <h1>Loading...</h1>
+      <div className="place-self-center">
+        <Spinner size="large" />
       </div>
     );
   }
@@ -124,15 +125,15 @@ export default function ZetricsLayout(props: IProps) {
     mintResponse.error
   ) {
     return (
-      <div className="container mx-auto bg-blue-300  overflow-auto">
+      <div>
         <h1>An error occurred</h1>
       </div>
     );
   }
 
   return (
-    <div className="container mx-auto bg-blue-300  overflow-auto">
-      <h1>ON THE ZINELINE</h1>
+    <div>
+      <Heading>ON THE ZINELINE</Heading>
 
       <Zaddress zaddress={zaddress} updateZaddress={setZaddress} />
       <Zonnect />
@@ -147,6 +148,13 @@ export default function ZetricsLayout(props: IProps) {
         assets={zassets}
         min={zin}
         max={zax}
+        loading={
+          salesResponse.loading ||
+          transferResponse.loading ||
+          receiptResponse.loading ||
+          buyResponse.loading ||
+          mintResponse.loading
+        }
         // onZinelineUpdate={(val) => console.log(val)}
       />
       <h2>What's next?</h2>

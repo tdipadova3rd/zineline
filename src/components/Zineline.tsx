@@ -1,4 +1,5 @@
 import { Range, Handle } from 'rc-slider';
+import { Box, Stack, Text, Stat } from 'degen';
 import Zandle from './Zandle';
 import { Asset } from '../types/state';
 
@@ -65,28 +66,38 @@ export default function Zineline(props: IProps) {
 
   const imageUri = props.asset.mediaUrl || '../zorb.svg';
   return (
-    <div className="flex-row">
-      <div className="place-content-between grid-cols-2 gap-4">
-        <div className="rounded-lg border-white">
-          <label>Purchased at Block Number {bounds[0]}</label>
-          <br />
-          <label>Held Until Block Number {bounds[1]}</label>
-        </div>
-        <div className="rounded-lg border-white">
-          <label>Collection Name: {props.asset.collectionName}</label>
-          <br />
-          <label>Collection Address: {props.asset.contractAddress}</label>
-        </div>
-        <div className="rounded-lg border-white">
-          <label>Token Name: {props.asset.name}</label>
-          <br />
-          <label>Token ID: {props.asset.tokenId}</label>
-        </div>
-        <div className="rounded-lg border-white object-center">
-          <img src={imageUri} width={100} height={100} alt={props.asset.name} />
-        </div>
-      </div>
-      <div className="left-x-30 px-10">
+    <Stack direction="vertical">
+      <Stack direction="horizontal" justify="stretch">
+        <Stack direction="vertical">
+          <Stat value={bounds[0]} label="Acquired At" meta="Block Number" />
+          <Box>
+            <img
+              src={imageUri}
+              width={100}
+              height={100}
+              alt={props.asset.name}
+              onError={(e) => {
+                e.currentTarget.src = '../zorb.svg';
+              }}
+            />
+          </Box>
+        </Stack>
+        <Box>
+          <div>
+            <Text>Collection Name: {props.asset.collectionName}</Text>
+            <br />
+            <Text>Collection Address: {props.asset.contractAddress}</Text>
+          </div>
+          <div>
+            <Text>Token Name: {props.asset.name}</Text>
+            <br />
+            <Text>Token ID: {props.asset.tokenId}</Text>
+          </div>
+        </Box>
+        <Stat value={bounds[1]} label="Held Until" meta="Block Number" />
+      </Stack>
+
+      <Box>
         <br />
         <Range
           className="center"
@@ -107,8 +118,8 @@ export default function Zineline(props: IProps) {
           trackStyle={[trackStyle]}
           railStyle={railStyle}
         />
-      </div>
+      </Box>
       <br />
-    </div>
+    </Stack>
   );
 }

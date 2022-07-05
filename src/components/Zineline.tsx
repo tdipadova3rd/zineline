@@ -69,8 +69,10 @@ export default function Zineline(props: IProps) {
     <Stack direction="vertical">
       <Stack direction="horizontal" justify="stretch">
         <Stack direction="vertical">
-          <Stat value={bounds[0]} label="Acquired At" meta="Block Number" />
-          <Box>
+          <Box marginX={'10'}>
+            <Stat value={bounds[0]} label="Acquired At" meta="Block Number" />
+          </Box>
+          <Box marginX={'10'}>
             <img
               src={imageUri}
               width={100}
@@ -82,7 +84,7 @@ export default function Zineline(props: IProps) {
             />
           </Box>
         </Stack>
-        <Box>
+        <Box marginX={'10'}>
           <div>
             <Text>Collection Name: {props.asset.collectionName}</Text>
             <br />
@@ -94,10 +96,12 @@ export default function Zineline(props: IProps) {
             <Text>Token ID: {props.asset.tokenId}</Text>
           </div>
         </Box>
-        <Stat value={bounds[1]} label="Held Until" meta="Block Number" />
+        <Box marginX={'10'}>
+          <Stat value={bounds[1]} label="Held Until" meta="Block Number" />
+        </Box>
       </Stack>
 
-      <Box>
+      <Box marginX={'10'}>
         <br />
         <Range
           className="center"

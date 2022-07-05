@@ -7,7 +7,7 @@ export default function Zonnect() {
       href="https://twitter.com/tdipadova3rd"
       target="_blank"
       rel="noreferrer"
-      className="absolute top-3 right-3"
+      className="absolute top-3 right-5"
     >
       <Button>Connect 🥺👉👈</Button>
     </a>

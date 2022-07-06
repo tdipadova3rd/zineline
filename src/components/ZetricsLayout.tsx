@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { ethers } from 'ethers';
-import { Heading, Spinner } from 'degen';
+import { Heading, Spinner, Stack } from 'degen';
 import ZinelineGrid from './ZinelineGrid';
 import ZimeWarp from './ZimeWarp';
 import Zonnect from './Zonnect';
@@ -133,12 +133,14 @@ export default function ZetricsLayout(props: IProps) {
 
   return (
     <div>
-      <Heading responsive={true} level="1">
-        ON THE ZINELINE
-      </Heading>
-
+      <Stack direction="horizontal">
+        <Heading responsive={true} level="1">
+          ON THE ZINELINE
+        </Heading>
+        <Zonnect />
+      </Stack>
       <Zaddress zaddress={zaddress} updateZaddress={setZaddress} />
-      <Zonnect />
+
       <ZimeWarp
         min={zin}
         max={zax}

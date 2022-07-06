@@ -9,7 +9,7 @@ export default function Zonnect() {
       rel="noreferrer"
       className="absolute top-3 right-5"
     >
-      <Button>Connect 🥺👉👈</Button>
+      <Button variant="secondary">Connect 🥺👉👈</Button>
     </a>
   );
 }

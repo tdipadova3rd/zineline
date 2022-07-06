@@ -133,7 +133,7 @@ export default function ZetricsLayout(props: IProps) {
 
   return (
     <div>
-      <Stack direction="horizontal" wrap={true}>
+      <Stack direction="horizontal" wrap={true} justify="space-between">
         <Heading responsive={true} level="1">
           ON THE ZINELINE
         </Heading>

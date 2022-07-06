@@ -9,10 +9,24 @@ const handleStyles: React.CSSProperties = {
   width: '100px',
   height: '100px',
   top: '-25px',
-  left: '-25px',
+  textAlign: 'center',
   backgroundColor: 'transparent',
   border: 'transparent'
 };
+
+const railStyle: React.CSSProperties = {
+  backgroundColor: '#ffcccb',
+  height: '10px',
+};
+
+const trackStyle: React.CSSProperties = {
+  backgroundColor: '#CBC3E3',
+  height: '10px',
+};
+
+const sliderStyle: React.CSSProperties = {
+  backgroundColor: 'transparent',
+}
 
 interface IProps {
   min: number;
@@ -47,6 +61,9 @@ export default function ZimeWarp(props: IProps) {
           );
         }}
         handleStyle={handleStyles}
+        railStyle={railStyle}
+        trackStyle={trackStyle}
+        style={sliderStyle}
       />
     </Box>
   );

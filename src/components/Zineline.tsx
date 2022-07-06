@@ -17,7 +17,7 @@ const handleStyles: React.CSSProperties[] = [
     width: '100px',
     height: '100px',
     top: '-25px',
-    left: '-25px',
+    // left: '-25px',
     backgroundColor: 'transparent',
     border: 'transparent'
   },
@@ -27,7 +27,7 @@ const handleStyles: React.CSSProperties[] = [
     width: '100px',
     height: '100px',
     top: '-120px',
-    left: '-25px',
+    // left: '-25px',
     backgroundColor: 'transparent',
     border: 'transparent'
   }
@@ -67,7 +67,7 @@ export default function Zineline(props: IProps) {
   const imageUri = props.asset.mediaUrl || '../zorb.svg';
   return (
     <Stack direction="vertical">
-      <Stack direction="horizontal" justify="stretch">
+      <Stack direction="horizontal" justify="stretch" flex={'auto'} wrap={true}>
         <Stack direction="vertical">
           <Box marginX={'10'}>
             <Stat value={bounds[0]} label="Acquired At" meta="Block Number" />
@@ -86,14 +86,18 @@ export default function Zineline(props: IProps) {
         </Stack>
         <Box marginX={'10'}>
           <div>
-            <Text>Collection Name: {props.asset.collectionName}</Text>
+            <Text wordBreak="break-word">
+              Collection Name: {props.asset.collectionName}
+            </Text>
             <br />
-            <Text>Collection Address: {props.asset.contractAddress}</Text>
+            <Text wordBreak="break-word">
+              Collection Address: {props.asset.contractAddress}
+            </Text>
           </div>
           <div>
-            <Text>Token Name: {props.asset.name}</Text>
+            <Text wordBreak="break-word">Token Name: {props.asset.name}</Text>
             <br />
-            <Text>Token ID: {props.asset.tokenId}</Text>
+            <Text wordBreak="break-word">Token ID: {props.asset.tokenId}</Text>
           </div>
         </Box>
         <Box marginX={'10'}>

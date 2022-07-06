@@ -133,7 +133,7 @@ export default function ZetricsLayout(props: IProps) {
 
   return (
     <div>
-      <Heading>ON THE ZINELINE</Heading>
+      <Heading level="1">ON THE ZINELINE</Heading>
 
       <Zaddress zaddress={zaddress} updateZaddress={setZaddress} />
       <Zonnect />

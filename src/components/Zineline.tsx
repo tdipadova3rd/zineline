@@ -1,5 +1,5 @@
 import { Range, Handle } from 'rc-slider';
-import { Box, Stack, Text, Stat } from 'degen';
+import { Box, Stack, Text, Stat, Tag } from 'degen';
 import Zandle from './Zandle';
 import { Asset } from '../types/state';
 
@@ -54,6 +54,10 @@ export default function Zineline(props: IProps) {
     props.asset.release?.blockNumber || props.max
   ];
 
+  let tokenIdStr = props.asset.tokenId.toString();
+  tokenIdStr =
+    tokenIdStr.length <= 20 ? tokenIdStr : tokenIdStr.substring(0, 17) + '...';
+
   // useEffect(() => {
   //   getBlock(bounds[0]).then((val) => {
   //     setPurchaseDate(val.timestamp);
@@ -83,21 +87,22 @@ export default function Zineline(props: IProps) {
               }}
             />
           </Box>
+          <Box marginX={'10'}>
+            <Tag>Token {tokenIdStr}</Tag>
+          </Box>
         </Stack>
         <Box marginX={'10'}>
           <div>
             <Text wordBreak="break-word">
               Collection Name: {props.asset.collectionName}
             </Text>
-            <br />
             <Text wordBreak="break-word">
               Collection Address: {props.asset.contractAddress}
             </Text>
           </div>
+          <br />
           <div>
             <Text wordBreak="break-word">Token Name: {props.asset.name}</Text>
-            <br />
-            <Text wordBreak="break-word">Token ID: {props.asset.tokenId}</Text>
           </div>
         </Box>
         <Box marginX={'10'}>

@@ -8,9 +8,8 @@ interface IProps {
 export default function ZortfolioMetrics({ zortfolioValue }: IProps) {
   //   return <p>Total portfolio value: {zortfolioValue}</p>;
   return (
-    <Box marginX={'10'}>
-      <Card>
-        <br />
+    <Box margin="10">
+      <Card padding="3">
         <Text>
           Zineline represents every NFT you've ever held. It shows acquisition
           (mint, receipt, buy) with 🌜 and release (sale, transfer, burn) with

@@ -12,38 +12,36 @@ export interface IProps {
 
 const handleStyles: React.CSSProperties[] = [
   {
-    position: 'relative',
-    // transform: 'translate(-50%, -50%)',
     width: '100px',
     height: '100px',
-    top: '-25px',
-    // left: '-25px',
+    top: '-20px',
     backgroundColor: 'transparent',
+    textAlign: 'center',
     border: 'transparent'
   },
   {
-    position: 'relative',
-    // transform: 'translate(-50%, -50%)',
     width: '100px',
     height: '100px',
-    top: '-120px',
-    // left: '-25px',
+    top: '-20px',
     backgroundColor: 'transparent',
+    textAlign: 'center',
     border: 'transparent'
   }
 ];
 
 const railStyle: React.CSSProperties = {
   backgroundColor: '#ffcccb',
-  height: '20px',
-  top: '-5px'
+  height: '10px',
 };
 
 const trackStyle: React.CSSProperties = {
   backgroundColor: '#CBC3E3',
-  height: '20px',
-  top: '-5px'
+  height: '10px',
 };
+
+const sliderStyle: React.CSSProperties = {
+  backgroundColor: 'transparent',
+}
 
 export default function Zineline(props: IProps) {
   // const [purchaseDate, setPurchaseDate] = useState(0);
@@ -113,7 +111,6 @@ export default function Zineline(props: IProps) {
       <Box marginX={'10'}>
         <br />
         <Range
-          className="center"
           defaultValue={bounds}
           allowCross={false}
           min={props.min}
@@ -130,6 +127,7 @@ export default function Zineline(props: IProps) {
           handleStyle={handleStyles}
           trackStyle={[trackStyle]}
           railStyle={railStyle}
+          style={sliderStyle}
         />
       </Box>
       <br />

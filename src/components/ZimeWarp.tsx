@@ -5,7 +5,6 @@ import 'rc-slider/assets/index.css';
 
 const handleStyles: React.CSSProperties = {
   position: 'relative',
-  // transform: 'translate(-50%, -50%)',
   width: '100px',
   height: '100px',
   top: '-25px',

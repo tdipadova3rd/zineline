@@ -56,7 +56,7 @@ export default function Zineline(props: IProps) {
 
   let tokenIdStr = props.asset.tokenId.toString();
   tokenIdStr =
-    tokenIdStr.length <= 20 ? tokenIdStr : tokenIdStr.substring(0, 17) + '...';
+    tokenIdStr.length <= 8 ? tokenIdStr : tokenIdStr.substring(0, 5) + '...';
 
   // useEffect(() => {
   //   getBlock(bounds[0]).then((val) => {
@@ -71,7 +71,7 @@ export default function Zineline(props: IProps) {
   const imageUri = props.asset.mediaUrl || '../zorb.svg';
   return (
     <Stack direction="vertical">
-      <Stack direction="horizontal" justify="stretch" flex={'auto'} wrap={true}>
+      <Stack direction="horizontal" justify="space-between" align="center" flex={'auto'} wrap={true}>
         <Stack direction="vertical">
           <Box marginX={'10'}>
             <Stat value={bounds[0]} label="Acquired At" meta="Block Number" />

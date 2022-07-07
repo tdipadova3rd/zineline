@@ -12,7 +12,7 @@ const client = new ApolloClient({
 function App(): JSX.Element {
   return (
     <ApolloProvider client={client}>
-      <ThemeProvider defaultMode="dark">
+      <ThemeProvider defaultMode='dark' defaultAccent='purple'>
         <ZetricsLayout />
       </ThemeProvider>
     </ApolloProvider>
